@@ -3,7 +3,7 @@ Small app to inform and notify on snow fall in resorts.
 
 ## Feature Backlog (Priority order)
 | Priority | Feature                                                   | Status |
-|:--------:|:---------------------------------------------------------:|:------:|
+|:--------:|-----------------------------------------------------------|:------:|
 | 1        | Current weather at specific location                      |        |
 | 2        | Days since last snowfall at specific location             |        |
 | 3        | Days it has been snowing at specific location             |        |
