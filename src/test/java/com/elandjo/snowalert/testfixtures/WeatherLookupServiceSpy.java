@@ -1,18 +1,18 @@
 package com.elandjo.snowalert.testfixtures;
 
-import com.elandjo.snowalert.domain.model.resort.Resort;
+import com.elandjo.snowalert.domain.model.resort.ResortId;
 import com.elandjo.snowalert.domain.model.weather.Weather;
 
 public class WeatherLookupServiceSpy extends WeatherLookupServiceStub {
-	private Resort resort;
+	private ResortId resort;
 
 	@Override
-	public Weather findWeatherConditionsAt(Resort resort) {
+	public Weather findWeatherConditionsAt(ResortId resort) {
 		this.resort = resort;
 		return super.findWeatherConditionsAt(resort);
 	}
 
-	public boolean wasCalledWith(Resort expectedResort) {
+	public boolean wasCalledWith(ResortId expectedResort) {
 		return expectedResort.equals(resort);
 	}
 }

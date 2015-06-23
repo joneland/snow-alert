@@ -1,18 +1,25 @@
 package com.elandjo.snowalert.application;
 
 import com.elandjo.snowalert.domain.model.resort.Resort;
+import com.elandjo.snowalert.domain.model.resort.ResortId;
+import com.elandjo.snowalert.domain.model.resort.ResortRepository;
 import com.elandjo.snowalert.domain.model.weather.Weather;
-import com.elandjo.snowalert.domain.service.WeatherLookupService;
 
 public class RetrieveWeather implements WeatherRetriever {
-	private WeatherLookupService weatherLookupService;
+	private ResortRepository resortRepository;
 
-	public RetrieveWeather(WeatherLookupService weatherLookupService) {
-		this.weatherLookupService = weatherLookupService;
+	public RetrieveWeather(ResortRepository weatherLookupService) {
+		this.resortRepository = weatherLookupService;
 	}
 
 	@Override
-	public Weather atResort(Resort resort) {
-		return weatherLookupService.findWeatherConditionsAt(resort);
+	public Weather atResort(ResortId resortId) {
+		Resort resort = resortRepository.find(resortId);
+
+		if (Resort.UNKNOWN.equals(resort)) {
+			return Weather.UNKNOWN;
+		}
+
+		return Weather.SNOWY;
 	}
 }

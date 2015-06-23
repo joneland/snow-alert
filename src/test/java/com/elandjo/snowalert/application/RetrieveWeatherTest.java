@@ -1,7 +1,9 @@
 package com.elandjo.snowalert.application;
 
 import com.elandjo.snowalert.domain.model.resort.Resort;
+import com.elandjo.snowalert.domain.model.resort.ResortId;
 import com.elandjo.snowalert.domain.model.weather.Weather;
+import com.elandjo.snowalert.testfixtures.ResortRepositorySpy;
 import com.elandjo.snowalert.testfixtures.WeatherLookupServiceSpy;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,38 +11,35 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RetrieveWeatherTest {
-	private static final Resort FRANCE_MORZINE = new Resort();
-	private static final Resort FRANCE_TIGNES = new Resort();
-	private static final Weather SNOWING = new Weather();
-	private static final Weather SUNNY = new Weather();
+	private static final ResortId RESORT_ID = new ResortId(000);
 
 	private RetrieveWeather retrieveWeather;
-	private WeatherLookupServiceSpy weatherLookupServiceSpy;
+	private ResortRepositorySpy resortRepository;
 
 	@Before
 	public void
 	initialise() {
-		weatherLookupServiceSpy = new WeatherLookupServiceSpy();
-		retrieveWeather = new RetrieveWeather(weatherLookupServiceSpy);
+		resortRepository = new ResortRepositorySpy();
+		retrieveWeather = new RetrieveWeather(resortRepository);
 	}
 
 	@Test public void
-	weatherIsSnowing_AtMorzineResort() {
-		weatherLookupServiceSpy.withWeatherResponse(SNOWING);
+	unknownWeatherConditions_WhenResortDoesNotExistForGivenId() {
+		resortRepository.returnsResort(Resort.UNKNOWN);
 
-		Weather weather = retrieveWeather.atResort(FRANCE_MORZINE);
+		Weather weather = retrieveWeather.atResort(RESORT_ID);
 
-		assertThat(weatherLookupServiceSpy.wasCalledWith(FRANCE_MORZINE)).isTrue();
-		assertThat(weather).isEqualTo(SNOWING);
+		assertThat(resortRepository.wasCalledWith(RESORT_ID)).isTrue();
+		assertThat(weather).isEqualTo(Weather.UNKNOWN);
 	}
 
 	@Test public void
-	weatherIsSunny_AtTignesResort() {
-		weatherLookupServiceSpy.withWeatherResponse(SUNNY);
+	weatherConditionsAreRetrieved_WhenResortExistsForGivenId() {
+		resortRepository.returnsResort(new Resort("Morzine, France"));
 
-		Weather weather = retrieveWeather.atResort(FRANCE_TIGNES);
+		Weather weather = retrieveWeather.atResort(RESORT_ID);
 
-		assertThat(weatherLookupServiceSpy.wasCalledWith(FRANCE_TIGNES)).isTrue();
-		assertThat(weather).isEqualTo(SUNNY);
+		assertThat(resortRepository.wasCalledWith(RESORT_ID)).isTrue();
+		assertThat(weather).isEqualTo(Weather.SNOWY);
 	}
 }
