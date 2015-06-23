@@ -1,14 +1,14 @@
 package com.elandjo.snowalert.testfixtures;
 
-import com.elandjo.snowalert.domain.service.WeatherLookupService;
-import com.elandjo.snowalert.domain.model.resort.ResortId;
+import com.elandjo.snowalert.domain.model.resort.Resort;
 import com.elandjo.snowalert.domain.model.weather.Weather;
+import com.elandjo.snowalert.domain.service.WeatherLookupService;
 
 public class WeatherLookupServiceStub implements WeatherLookupService {
 	private Weather weatherResponse;
 
 	@Override
-	public Weather findWeatherConditionsAt(ResortId resort) {
+	public Weather findWeatherConditionsAt(Resort resort) {
 		return weatherResponse;
 	}
 

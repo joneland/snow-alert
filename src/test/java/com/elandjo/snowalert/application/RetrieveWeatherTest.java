@@ -15,12 +15,14 @@ public class RetrieveWeatherTest {
 
 	private RetrieveWeather retrieveWeather;
 	private ResortRepositorySpy resortRepository;
+	private WeatherLookupServiceSpy weatherLookupService;
 
 	@Before
 	public void
 	initialise() {
 		resortRepository = new ResortRepositorySpy();
-		retrieveWeather = new RetrieveWeather(resortRepository);
+		weatherLookupService = new WeatherLookupServiceSpy();
+		retrieveWeather = new RetrieveWeather(resortRepository, weatherLookupService);
 	}
 
 	@Test public void
@@ -35,11 +37,14 @@ public class RetrieveWeatherTest {
 
 	@Test public void
 	weatherConditionsAreRetrieved_WhenResortExistsForGivenId() {
-		resortRepository.returnsResort(new Resort("Morzine, France"));
+		Resort resort = new Resort("Morzine, France");
+		resortRepository.returnsResort(resort);
+		weatherLookupService.withWeatherResponse(Weather.SNOWY);
 
 		Weather weather = retrieveWeather.atResort(RESORT_ID);
 
 		assertThat(resortRepository.wasCalledWith(RESORT_ID)).isTrue();
+		assertThat(weatherLookupService.wasCalledWith(resort)).isTrue();
 		assertThat(weather).isEqualTo(Weather.SNOWY);
 	}
 }

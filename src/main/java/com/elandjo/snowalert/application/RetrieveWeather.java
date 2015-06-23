@@ -4,12 +4,15 @@ import com.elandjo.snowalert.domain.model.resort.Resort;
 import com.elandjo.snowalert.domain.model.resort.ResortId;
 import com.elandjo.snowalert.domain.model.resort.ResortRepository;
 import com.elandjo.snowalert.domain.model.weather.Weather;
+import com.elandjo.snowalert.domain.service.WeatherLookupService;
 
 public class RetrieveWeather implements WeatherRetriever {
-	private ResortRepository resortRepository;
+	private final ResortRepository resortRepository;
+	private final WeatherLookupService weatherLookupService;
 
-	public RetrieveWeather(ResortRepository weatherLookupService) {
-		this.resortRepository = weatherLookupService;
+	public RetrieveWeather(final ResortRepository resortRepository, final WeatherLookupService weatherLookupService) {
+		this.resortRepository = resortRepository;
+		this.weatherLookupService = weatherLookupService;
 	}
 
 	@Override
@@ -20,6 +23,6 @@ public class RetrieveWeather implements WeatherRetriever {
 			return Weather.UNKNOWN;
 		}
 
-		return Weather.SNOWY;
+		return weatherLookupService.findWeatherConditionsAt(resort);
 	}
 }
