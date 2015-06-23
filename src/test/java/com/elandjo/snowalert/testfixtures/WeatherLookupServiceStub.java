@@ -12,7 +12,7 @@ public class WeatherLookupServiceStub implements WeatherLookupService {
 		return weatherResponse;
 	}
 
-	public void withWeatherResponse(Weather weather) {
+	public void returnsWeatherResponse(Weather weather) {
 		this.weatherResponse = weather;
 	}
 }

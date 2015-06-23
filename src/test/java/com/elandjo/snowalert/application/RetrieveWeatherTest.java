@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RetrieveWeatherTest {
 	private static final ResortId RESORT_ID = new ResortId(000);
+	private static final Resort FRENCH_RESORT = new Resort("Morzine, France");
 
 	private RetrieveWeather retrieveWeather;
 	private ResortRepositorySpy resortRepository;
@@ -37,14 +38,13 @@ public class RetrieveWeatherTest {
 
 	@Test public void
 	weatherConditionsAreRetrieved_WhenResortExistsForGivenId() {
-		Resort resort = new Resort("Morzine, France");
-		resortRepository.returnsResort(resort);
-		weatherLookupService.withWeatherResponse(Weather.SNOWY);
+		resortRepository.returnsResort(FRENCH_RESORT);
+		weatherLookupService.returnsWeatherResponse(Weather.SNOWY);
 
 		Weather weather = retrieveWeather.atResort(RESORT_ID);
 
 		assertThat(resortRepository.wasCalledWith(RESORT_ID)).isTrue();
-		assertThat(weatherLookupService.wasCalledWith(resort)).isTrue();
+		assertThat(weatherLookupService.wasCalledWith(FRENCH_RESORT)).isTrue();
 		assertThat(weather).isEqualTo(Weather.SNOWY);
 	}
 }
