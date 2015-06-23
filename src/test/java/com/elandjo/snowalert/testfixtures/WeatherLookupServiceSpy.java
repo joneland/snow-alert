@@ -1,7 +1,7 @@
 package com.elandjo.snowalert.testfixtures;
 
-import com.elandjo.snowalert.domain.resort.Resort;
-import com.elandjo.snowalert.domain.weather.Weather;
+import com.elandjo.snowalert.domain.model.resort.Resort;
+import com.elandjo.snowalert.domain.model.weather.Weather;
 
 public class WeatherLookupServiceSpy extends WeatherLookupServiceStub {
 	private Resort resort;

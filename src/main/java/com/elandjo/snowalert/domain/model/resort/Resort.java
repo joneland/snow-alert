@@ -1,4 +1,4 @@
-package com.elandjo.snowalert.domain.resort;
+package com.elandjo.snowalert.domain.model.resort;
 
 public enum Resort {
 	FRANCE_MORZINE,
