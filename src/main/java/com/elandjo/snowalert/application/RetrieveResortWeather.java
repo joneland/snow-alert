@@ -6,16 +6,15 @@ import com.elandjo.snowalert.domain.model.resort.ResortRepository;
 import com.elandjo.snowalert.domain.model.weather.Weather;
 import com.elandjo.snowalert.domain.service.WeatherLookupService;
 
-public class RetrieveWeather implements WeatherRetriever {
+public class RetrieveResortWeather {
 	private final ResortRepository resortRepository;
 	private final WeatherLookupService weatherLookupService;
 
-	public RetrieveWeather(final ResortRepository resortRepository, final WeatherLookupService weatherLookupService) {
+	public RetrieveResortWeather(final ResortRepository resortRepository, final WeatherLookupService weatherLookupService) {
 		this.resortRepository = resortRepository;
 		this.weatherLookupService = weatherLookupService;
 	}
 
-	@Override
 	public Weather atResort(ResortId resortId) {
 		Resort resort = resortRepository.find(resortId);
 
