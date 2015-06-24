@@ -10,11 +10,11 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RetrieveWeatherTest {
+public class GatherResortWeatherTest {
 	private static final ResortId RESORT_ID = new ResortId(000);
 	private static final Resort FRENCH_RESORT = new Resort("Morzine, France");
 
-	private RetrieveResortWeather retrieveResortWeather;
+	private GatherResortWeather gatherResortWeather;
 	private ResortRepositorySpy resortRepository;
 	private WeatherLookupServiceSpy weatherLookupService;
 
@@ -23,14 +23,14 @@ public class RetrieveWeatherTest {
 	initialise() {
 		resortRepository = new ResortRepositorySpy();
 		weatherLookupService = new WeatherLookupServiceSpy();
-		retrieveResortWeather = new RetrieveResortWeather(resortRepository, weatherLookupService);
+		gatherResortWeather = new GatherResortWeather(resortRepository, weatherLookupService);
 	}
 
 	@Test public void
 	unknownWeatherConditions_WhenResortDoesNotExistForGivenId() {
 		resortRepository.returnsResort(Resort.UNKNOWN);
 
-		Weather weather = retrieveResortWeather.atResort(RESORT_ID);
+		Weather weather = gatherResortWeather.atResort(RESORT_ID);
 
 		assertThat(resortRepository.wasCalledWith(RESORT_ID)).isTrue();
 		assertThat(weather).isEqualTo(Weather.UNKNOWN);
@@ -41,7 +41,7 @@ public class RetrieveWeatherTest {
 		resortRepository.returnsResort(FRENCH_RESORT);
 		weatherLookupService.returnsWeatherResponse(Weather.SNOWY);
 
-		Weather weather = retrieveResortWeather.atResort(RESORT_ID);
+		Weather weather = gatherResortWeather.atResort(RESORT_ID);
 
 		assertThat(resortRepository.wasCalledWith(RESORT_ID)).isTrue();
 		assertThat(weatherLookupService.wasCalledWith(FRENCH_RESORT)).isTrue();

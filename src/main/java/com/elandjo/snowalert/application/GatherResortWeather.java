@@ -6,11 +6,11 @@ import com.elandjo.snowalert.domain.model.resort.ResortRepository;
 import com.elandjo.snowalert.domain.model.weather.Weather;
 import com.elandjo.snowalert.domain.service.WeatherLookupService;
 
-public class RetrieveResortWeather {
+public class GatherResortWeather {
 	private final ResortRepository resortRepository;
 	private final WeatherLookupService weatherLookupService;
 
-	public RetrieveResortWeather(final ResortRepository resortRepository, final WeatherLookupService weatherLookupService) {
+	public GatherResortWeather(final ResortRepository resortRepository, final WeatherLookupService weatherLookupService) {
 		this.resortRepository = resortRepository;
 		this.weatherLookupService = weatherLookupService;
 	}
