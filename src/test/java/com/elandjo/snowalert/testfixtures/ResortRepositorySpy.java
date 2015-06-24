@@ -12,7 +12,7 @@ public class ResortRepositorySpy extends ResortRepositoryStub {
 		return super.find(resortId);
 	}
 
-	public boolean wasCalledWith(ResortId expectedResortId) {
+	public boolean wasCalledWithId(ResortId expectedResortId) {
 		return expectedResortId.equals(resortId);
 	}
 }

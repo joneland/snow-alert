@@ -32,18 +32,18 @@ public class GatherResortWeatherTest {
 
 		Weather weather = gatherResortWeather.atResort(RESORT_ID);
 
-		assertThat(resortRepository.wasCalledWith(RESORT_ID)).isTrue();
+		assertThat(resortRepository.wasCalledWithId(RESORT_ID)).isTrue();
 		assertThat(weather).isEqualTo(Weather.UNKNOWN);
 	}
 
 	@Test public void
-	weatherConditionsAreRetrieved_WhenResortExistsForGivenId() {
+	weatherConditionsAreRetrievedUsingLookupService_WhenResortExistsForGivenId() {
 		resortRepository.returnsResort(FRENCH_RESORT);
 		weatherLookupService.returnsWeatherResponse(Weather.SNOWY);
 
 		Weather weather = gatherResortWeather.atResort(RESORT_ID);
 
-		assertThat(resortRepository.wasCalledWith(RESORT_ID)).isTrue();
+		assertThat(resortRepository.wasCalledWithId(RESORT_ID)).isTrue();
 		assertThat(weatherLookupService.wasCalledWith(FRENCH_RESORT)).isTrue();
 		assertThat(weather).isEqualTo(Weather.SNOWY);
 	}
