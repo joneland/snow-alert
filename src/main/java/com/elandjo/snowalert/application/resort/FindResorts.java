@@ -12,6 +12,10 @@ public class FindResorts {
 		this.resorts = resorts;
 	}
 
+	public Resort find(ResortId resortId) {
+		return resorts.find(resortId);
+	}
+
 	public List<Resort> findAll() {
 		return resorts.findAll();
 	}
