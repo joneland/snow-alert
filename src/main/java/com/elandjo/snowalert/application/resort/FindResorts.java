@@ -13,7 +13,7 @@ public class FindResorts {
 		this.resorts = resorts;
 	}
 
-	public Resort find(ResortId resortId) {
+	public Resort find(final ResortId resortId) {
 		return resorts.find(resortId);
 	}
 
