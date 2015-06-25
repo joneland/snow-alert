@@ -2,7 +2,7 @@ package com.elandjo.snowalert.application.resort;
 
 import com.elandjo.snowalert.domain.model.resort.Resort;
 import com.elandjo.snowalert.domain.model.resort.ResortId;
-import com.elandjo.snowalert.testdoubles.ResortsSpy;
+import com.elandjo.snowalert.domain.model.resort.testdoubles.ResortsSpy;
 import org.junit.Before;
 import org.junit.Test;
 
