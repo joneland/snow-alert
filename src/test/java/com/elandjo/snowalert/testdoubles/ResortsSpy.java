@@ -1,6 +1,6 @@
 package com.elandjo.snowalert.testdoubles;
 
-import com.elandjo.snowalert.application.resort.ResortId;
+import com.elandjo.snowalert.domain.model.resort.ResortId;
 import com.elandjo.snowalert.domain.model.resort.Resort;
 
 public class ResortsSpy extends ResortsStub {

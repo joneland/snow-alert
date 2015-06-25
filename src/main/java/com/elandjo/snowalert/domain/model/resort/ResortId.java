@@ -1,4 +1,4 @@
-package com.elandjo.snowalert.application.resort;
+package com.elandjo.snowalert.domain.model.resort;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
