@@ -21,8 +21,8 @@ public class GatherResortConditionsTest {
 	@Test public void
 	gathersWeatherConditions_ForGivenResortId() {
 		ResortConditions expectedResortConditions = new ResortConditions();
-		ResortId resortId = new ResortId("123");
 		resortConditionsService.setResortConditions(expectedResortConditions);
+		ResortId resortId = new ResortId("123");
 
 		ResortConditions resortConditions = gatherResortConditions.atResort(resortId);
 
