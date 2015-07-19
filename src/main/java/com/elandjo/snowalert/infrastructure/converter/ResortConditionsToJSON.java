@@ -8,7 +8,7 @@ import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.ANY;
 import static com.fasterxml.jackson.annotation.PropertyAccessor.FIELD;
 
 class ResortConditionsToJSON {
-	static String convert(ResortConditions resortConditions) {
+	static String convert(final ResortConditions resortConditions) {
 		ObjectMapper objectMapper = new ObjectMapper().setVisibility(FIELD, ANY);
 		try {
 			return objectMapper.writeValueAsString(resortConditions);

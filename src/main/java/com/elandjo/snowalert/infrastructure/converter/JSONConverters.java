@@ -3,7 +3,7 @@ package com.elandjo.snowalert.infrastructure.converter;
 import com.elandjo.snowalert.domain.model.resort.ResortConditions;
 
 public class JSONConverters {
-	public String convert(Object target) {
+	public String convert(final Object target) {
 		if (target instanceof ResortConditions) {
 			return ResortConditionsToJSON.convert((ResortConditions) target);
 		}

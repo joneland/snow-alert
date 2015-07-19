@@ -11,7 +11,7 @@ public class GatherResortConditions {
 		this.resortConditionsService = resortConditionsService;
 	}
 
-	public ResortConditions atResort(ResortId resortId) {
+	public ResortConditions atResort(final ResortId resortId) {
 		return resortConditionsService.atResort(resortId);
 	}
 }
