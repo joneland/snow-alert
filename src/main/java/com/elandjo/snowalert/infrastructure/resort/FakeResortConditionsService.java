@@ -9,6 +9,9 @@ import static com.elandjo.snowalert.domain.model.resort.Weather.SNOWING;
 public class FakeResortConditionsService implements ResortConditionsService {
 	@Override
 	public ResortConditions atResort(ResortId resortId) {
-		return new ResortConditions().withWeather(SNOWING);
+		if (new ResortId("123").equals(resortId)) {
+			return new ResortConditions().withWeather(SNOWING);
+		}
+		return ResortConditions.UNKNOWN;
 	}
 }
