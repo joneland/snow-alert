@@ -6,17 +6,8 @@ import org.junit.Test;
 import static com.elandjo.snowalert.domain.model.resort.Weather.SNOWING;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class JSONConvertersTest {
-	private JSONConverters jsonConverters = new JSONConverters();
-
-	@Test public void
-	throwsException_WhenConverterDoesNotExist() {
-		try {
-			jsonConverters.convert(new UnsupportedObject());
-		} catch (IllegalStateException e) {
-			assertThat(e).hasMessage("No converters found for Unsupported Object");
-		}
-	}
+public class ResortConditionsToJSONTest {
+	private ResortConditionsToJSON jsonConverters = new ResortConditionsToJSON();
 
 	@Test public void
 	convertsResortConditions_toJSON() {
@@ -25,11 +16,5 @@ public class JSONConvertersTest {
 		String json = jsonConverters.convert(resortConditions);
 
 		assertThat(json).isEqualTo("{\"weather\":\"SNOWING\"}");
-	}
-
-	class UnsupportedObject {
-		public String toString() {
-			return "Unsupported Object";
-		}
 	}
 }
