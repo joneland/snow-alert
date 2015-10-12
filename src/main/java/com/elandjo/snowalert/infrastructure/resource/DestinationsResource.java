@@ -28,24 +28,18 @@ public class DestinationsResource {
 	@GET
 	@Path("{country}")
 	@Produces(APPLICATION_JSON)
-	public String regionsForCountry(@PathParam("country") String country) {
-		return "{ \"regions\":" +
-					"{ " +
-						"\"name\": \"Rhone-Alpes\"," +
-						"\"link\": \"" + uriInfo.getRequestUri() + "/RHONE_ALPES\"" +
-					"}" +
-				"}";
+	public Regions regionsForCountry(@PathParam("country") String country) {
+		Regions regions = new Regions();
+		regions.add(new Region("Rhone-Alpes", uriInfo.getRequestUri()));
+		return regions;
 	}
 
 	@GET
 	@Path("{country}/{region}")
 	@Produces(APPLICATION_JSON)
-	public String resortsForRegion(@PathParam("country") String country, @PathParam("region") String region) {
-		return "{ \"resorts\":" +
-					"{ " +
-						"\"name\": \"Morzine\"," +
-						"\"link\": \"" + uriInfo.getBaseUri() + "conditions/1234\"" +
-					"} " +
-				"}";
+	public Resorts resortsForRegion(@PathParam("country") String country, @PathParam("region") String region) {
+		Resorts resorts = new Resorts();
+		resorts.add(new Resort("Morzine", 1234, uriInfo.getBaseUri()));
+		return resorts;
 	}
 }

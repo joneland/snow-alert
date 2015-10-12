@@ -1,6 +1,5 @@
 package com.elandjo.snowalert.infrastructure.resource;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,9 +16,11 @@ public class DestinationsResourceTest {
 
 	private DestinationsResource destinationsResource;
 
-	@Before public void
+	@Before
+	public void
 	initialise() throws URISyntaxException {
-		when(uriInfo.getRequestUri()).thenReturn(new URI("http://www.test.com"));
+		when(uriInfo.getRequestUri()).thenReturn(new URI("http://www.test.com/destinations"));
+		when(uriInfo.getBaseUri()).thenReturn(new URI("http://www.test.com"));
 
 		destinationsResource = new DestinationsResource();
 		destinationsResource.setUriInfo(uriInfo);
@@ -27,13 +28,31 @@ public class DestinationsResourceTest {
 
 	@Test public void
 	returnsSupportedCountries() {
-		Countries countries = destinationsResource.allCountries();
-
 		Countries expectedCountries = new Countries();
-		Country france = new Country("France", uriInfo.getRequestUri());
-		expectedCountries.add(france);
+		expectedCountries.add(new Country("France", uriInfo.getRequestUri()));
+
+		Countries countries = destinationsResource.allCountries();
 
 		assertThat(countries).isEqualTo(expectedCountries);
 	}
 
+	@Test public void
+	returnsSupportedRegionsForGivenCountry() {
+		Regions expectedRegions = new Regions();
+		expectedRegions.add(new Region("Rhone-Alpes", uriInfo.getRequestUri()));
+
+		Regions regions = destinationsResource.regionsForCountry("France");
+
+		assertThat(regions).isEqualTo(expectedRegions);
+	}
+
+	@Test public void
+	returnsSupportedResortsForGivenRegion() {
+		Resorts expectedResorts = new Resorts();
+		expectedResorts.add(new Resort("Morzine", 1234, uriInfo.getBaseUri()));
+
+		Resorts resorts = destinationsResource.resortsForRegion("France", "Rhone-Alpes");
+
+		assertThat(resorts).isEqualTo(expectedResorts);
+	}
 }
