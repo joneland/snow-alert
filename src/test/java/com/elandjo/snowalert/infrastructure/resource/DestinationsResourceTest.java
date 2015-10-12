@@ -3,10 +3,12 @@ package com.elandjo.snowalert.infrastructure.resource;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import static javax.ws.rs.core.Response.Status.OK;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -27,32 +29,35 @@ public class DestinationsResourceTest {
 	}
 
 	@Test public void
-	returnsSupportedCountries() {
+	supportedCountries() {
 		Countries expectedCountries = new Countries();
 		expectedCountries.add(new Country("France", uriInfo.getRequestUri()));
 
-		Countries countries = destinationsResource.allCountries();
+		Response countriesResponse = destinationsResource.allCountries();
 
-		assertThat(countries).isEqualTo(expectedCountries);
+		assertThat(countriesResponse.getEntity()).isEqualTo(expectedCountries);
+		assertThat(countriesResponse.getStatus()).isEqualTo(OK.getStatusCode());
 	}
 
 	@Test public void
-	returnsSupportedRegionsForGivenCountry() {
+	supportedRegions_ForGivenCountry() {
 		Regions expectedRegions = new Regions();
 		expectedRegions.add(new Region("Rhone-Alpes", uriInfo.getRequestUri()));
 
-		Regions regions = destinationsResource.regionsForCountry("France");
+		Response regionsResponse = destinationsResource.regionsForCountry("France");
 
-		assertThat(regions).isEqualTo(expectedRegions);
+		assertThat(regionsResponse.getEntity()).isEqualTo(expectedRegions);
+		assertThat(regionsResponse.getStatus()).isEqualTo(OK.getStatusCode());
 	}
 
 	@Test public void
-	returnsSupportedResortsForGivenRegion() {
+	supportedResorts_ForGivenRegion() {
 		Resorts expectedResorts = new Resorts();
 		expectedResorts.add(new Resort("Morzine", 1234, uriInfo.getBaseUri()));
 
-		Resorts resorts = destinationsResource.resortsForRegion("France", "Rhone-Alpes");
+		Response resortsResponse = destinationsResource.resortsForRegion("France", "Rhone-Alpes");
 
-		assertThat(resorts).isEqualTo(expectedResorts);
+		assertThat(resortsResponse.getEntity()).isEqualTo(expectedResorts);
+		assertThat(resortsResponse.getStatus()).isEqualTo(OK.getStatusCode());
 	}
 }
