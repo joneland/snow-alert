@@ -1,7 +1,7 @@
 package com.elandjo.snowalert.infrastructure.configuration;
 
 import com.elandjo.snowalert.infrastructure.resource.ConditionsResource;
-import com.elandjo.snowalert.infrastructure.resource.ResortsResource;
+import com.elandjo.snowalert.infrastructure.resource.DestinationsResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
 
@@ -12,10 +12,10 @@ public class SnowAlertApplication extends Application<SnowAlertConfiguration> {
 
 	@Override
 	public void run(SnowAlertConfiguration configuration, Environment environment) throws Exception {
-		final ResortsResource resortsResource = new ResortsResource();
+		final DestinationsResource destinationsResource = new DestinationsResource();
 		final ConditionsResource conditionsResource = new ConditionsResource();
 
-		environment.jersey().register(resortsResource);
+		environment.jersey().register(destinationsResource);
 		environment.jersey().register(conditionsResource);
 	}
 

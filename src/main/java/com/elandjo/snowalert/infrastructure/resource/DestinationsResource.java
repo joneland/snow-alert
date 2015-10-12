@@ -9,19 +9,20 @@ import javax.ws.rs.core.UriInfo;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("resorts")
-public class ResortsResource {
-	@Context UriInfo uriInfo;
+@Path("destinations")
+public class DestinationsResource {
+	@Context private UriInfo uriInfo;
+
+	protected void setUriInfo(UriInfo uriInfo) {
+		this.uriInfo = uriInfo;
+	}
 
 	@GET
 	@Produces(APPLICATION_JSON)
-	public String allCountries() {
-		return "{ \"countries\":" +
-					"{ " +
-						"\"name\": \"France\"," +
-						"\"link\": \"" + uriInfo.getRequestUri() + "/FRANCE\"" +
-					"}" +
-				"}";
+	public Countries allCountries() {
+		Countries countries = new Countries();
+		countries.add(new Country("France", uriInfo.getRequestUri()));
+		return countries;
 	}
 
 	@GET

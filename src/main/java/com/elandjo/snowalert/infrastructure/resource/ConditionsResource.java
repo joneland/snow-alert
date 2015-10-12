@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 public class ConditionsResource {
 	@GET
 	@Path("{resortId}")
-	public String conditionsForResort(@PathParam("resortId") String resortId) {
+		public String conditionsForResort(@PathParam("resortId") String resortId) {
 		return "{" +
 					"\"weather\": \"Snowing\"" +
 				"}";
