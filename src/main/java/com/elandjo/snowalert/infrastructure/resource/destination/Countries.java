@@ -1,4 +1,4 @@
-package com.elandjo.snowalert.infrastructure.resource;
+package com.elandjo.snowalert.infrastructure.resource.destination;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -7,16 +7,16 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Resorts {
-	private List<Resort> resorts = new ArrayList<Resort>();
+class Countries {
+	private final List<Country> countries = new ArrayList<Country>();
 
-	public void add(Resort resort) {
-		resorts.add(resort);
+	void add(Country country) {
+		countries.add(country);
 	}
 
 	@JsonProperty
-	public List<Resort> getResorts() {
-		return resorts;
+	List<Country> getCountries() {
+		return countries;
 	}
 
 	@Override

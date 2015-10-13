@@ -1,4 +1,4 @@
-package com.elandjo.snowalert.infrastructure.resource;
+package com.elandjo.snowalert.infrastructure.resource.destination;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -6,22 +6,22 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import java.net.URI;
 
-public class Country {
+class Country {
 	private String name;
 	private String link;
 
-	public Country(String name, URI requestUri) {
+	Country(String name, URI requestUri) {
 		this.name = name;
 		this.link = requestUri + "/" + name;
 	}
 
 	@JsonProperty
-	public String getName() {
+	String getName() {
 		return name;
 	}
 
 	@JsonProperty
-	public String getLink() {
+	String getLink() {
 		return link;
 	}
 

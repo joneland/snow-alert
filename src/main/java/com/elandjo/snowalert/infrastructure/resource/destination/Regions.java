@@ -1,28 +1,22 @@
-package com.elandjo.snowalert.infrastructure.resource;
+package com.elandjo.snowalert.infrastructure.resource.destination;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Resort {
-	private String name;
-	private String link;
+class Regions {
+	private List<Region> regions = new ArrayList<Region>();
 
-	public Resort(String name, Integer id, URI uri) {
-		this.name = name;
-		this.link = uri + "conditions/" + id;
+	void add(Region region) {
+		regions.add(region);
 	}
 
 	@JsonProperty
-	public String getName() {
-		return name;
-	}
-
-	@JsonProperty
-	public String getLink() {
-		return link;
+	List<Region> getRegions() {
+		return regions;
 	}
 
 	@Override

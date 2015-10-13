@@ -1,7 +1,7 @@
 package com.elandjo.snowalert.infrastructure.configuration;
 
-import com.elandjo.snowalert.infrastructure.resource.ConditionsResource;
-import com.elandjo.snowalert.infrastructure.resource.DestinationsResource;
+import com.elandjo.snowalert.infrastructure.resource.condition.ConditionsResource;
+import com.elandjo.snowalert.infrastructure.resource.destination.DestinationsResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
 

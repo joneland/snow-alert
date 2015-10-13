@@ -1,24 +1,20 @@
-package com.elandjo.snowalert.infrastructure.resource;
+package com.elandjo.snowalert.infrastructure.resource.condition;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
+class Conditions {
+	private String weather;
 
-public class Countries {
-	private final List<Country> countries = new ArrayList<Country>();
-
-	public void add(Country country) {
-		countries.add(country);
+	Conditions(String weather) {
+		this.weather = weather;
 	}
 
 	@JsonProperty
-	public List<Country> getCountries() {
-		return countries;
+	String getWeather() {
+		return weather;
 	}
-
 
 	@Override
 	public boolean equals(Object other) {

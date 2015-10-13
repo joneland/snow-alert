@@ -1,4 +1,4 @@
-package com.elandjo.snowalert.infrastructure.resource;
+package com.elandjo.snowalert.infrastructure.resource.destination;
 
 import org.junit.Before;
 import org.junit.Test;
