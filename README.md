@@ -14,7 +14,7 @@ App to inform and notify on snow fall in resorts.
 | View in android app                                                |        |
 | Notification when snow starts to fall                              |        |
 
-/destinations
+/country
 	LINK: /country/{countryId}
 
 /country/{countryId}
@@ -23,6 +23,6 @@ App to inform and notify on snow fall in resorts.
 /region/{resortId}
 	LINK:  /resort/{resortId}
 
-/resort/123
+/resort/{resortId}
 	LINK: /conditions/{resortId}
 	LINK: /piste/{resortId}
