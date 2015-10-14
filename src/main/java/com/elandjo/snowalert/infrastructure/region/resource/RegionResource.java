@@ -15,7 +15,7 @@ public class RegionResource {
 
 	@GET
 	@Path("{regionId}")
-	public Response regionsForCountry(@PathParam("regionId") String regionId) {
+	public Response retrieveRegion(@PathParam("regionId") String regionId) {
 		Region region = new Region("Rhones-Alpes", uriInfo.getBaseUri());
 		region.withResort("123", "Morzine");
 

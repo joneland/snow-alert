@@ -1,6 +1,8 @@
 package com.elandjo.snowalert.infrastructure.country.resource;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -30,6 +32,16 @@ class Country {
 		return regions;
 	}
 
+	@Override
+	public boolean equals(Object other) {
+		return EqualsBuilder.reflectionEquals(this, other);
+	}
+
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
 	class Region {
 		private final String name;
 		private final String link;
@@ -47,6 +59,16 @@ class Country {
 		@JsonProperty
 		public String getLink() {
 			return link;
+		}
+
+		@Override
+		public boolean equals(Object other) {
+			return EqualsBuilder.reflectionEquals(this, other);
+		}
+
+		@Override
+		public int hashCode() {
+			return HashCodeBuilder.reflectionHashCode(this);
 		}
 	}
 }

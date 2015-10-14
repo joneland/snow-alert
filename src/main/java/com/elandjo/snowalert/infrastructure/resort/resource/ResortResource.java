@@ -15,10 +15,13 @@ public class ResortResource {
 
 	@GET
 	@Path("{resortId}")
-	public Response resortsForRegion(@PathParam("resortId") String resortId) {
+	public Response retrieveResort(@PathParam("resortId") String resortId) {
 		Resort resort = new Resort("Morzine", uriInfo.getBaseUri());
 
 		return Response.ok(resort, APPLICATION_JSON).build();
 	}
 
+	protected void setUriInfo(UriInfo uriInfo) {
+		this.uriInfo = uriInfo;
+	}
 }

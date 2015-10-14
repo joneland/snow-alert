@@ -2,6 +2,7 @@ package com.elandjo.snowalert.infrastructure.country.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -14,7 +15,7 @@ public class CountryResource {
 
 	@GET
 	@Path("{countryId}")
-	public Response specificCountry() {
+	public Response retrieveCountry(@PathParam("countryId") String countryId) {
 		Country country = new Country("France", uriInfo.getBaseUri());
 		country.withRegion("123", "Rhone-Alpes");
 

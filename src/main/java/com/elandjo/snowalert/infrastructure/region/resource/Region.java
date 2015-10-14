@@ -1,6 +1,8 @@
 package com.elandjo.snowalert.infrastructure.region.resource;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -25,6 +27,16 @@ public class Region {
 		return name;
 	}
 
+	@Override
+	public boolean equals(Object other) {
+		return EqualsBuilder.reflectionEquals(this, other);
+	}
+
+	@Override
+	public int hashCode() {
+		return HashCodeBuilder.reflectionHashCode(this);
+	}
+
 	@JsonProperty
 	public List<Resort> getResorts() {
 		return resorts;
@@ -47,6 +59,16 @@ public class Region {
 		@JsonProperty
 		public String getLink() {
 			return link;
+		}
+
+		@Override
+		public boolean equals(Object other) {
+			return EqualsBuilder.reflectionEquals(this, other);
+		}
+
+		@Override
+		public int hashCode() {
+			return HashCodeBuilder.reflectionHashCode(this);
 		}
 	}
 }
