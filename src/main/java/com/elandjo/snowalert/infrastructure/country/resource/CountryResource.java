@@ -14,6 +14,14 @@ public class CountryResource {
 	@Context private UriInfo uriInfo;
 
 	@GET
+	public Response allCountries() {
+		Countries countries = new Countries(uriInfo.getBaseUri());
+		countries.withCountry("123", "France");
+
+		return Response.ok(countries, APPLICATION_JSON).build();
+	}
+
+	@GET
 	@Path("{countryId}")
 	public Response retrieveCountry(@PathParam("countryId") String countryId) {
 		Country country = new Country("France", uriInfo.getBaseUri());

@@ -25,6 +25,16 @@ public class CountryResourceTest {
 	}
 
 	@Test public void
+	returnsAllCountries() {
+		Countries expectedCountries = new Countries(uriInfo.getBaseUri());
+		expectedCountries.withCountry("123", "France");
+
+		Response countriesResponse = resourceUT.allCountries();
+
+		assertThat(countriesResponse.getEntity()).isEqualTo(expectedCountries);
+	}
+
+	@Test public void
 	returnsCountryForGivenId_WithAssociatedRegions() {
 		Country expectedCountry = new Country("France", uriInfo.getBaseUri());
 		expectedCountry.withRegion("123", "Rhone-Alpes");
