@@ -1,17 +1,28 @@
 # Snow Alert
-Small app to inform and notify on snow fall in resorts.
+App to inform and notify on snow fall in resorts.
 
 ## Feature Backlog (Priority order)
 | Feature                                                            | Status |
 |--------------------------------------------------------------------|:------:|
-| Retrieve all supported locations                                   |        |
-| Current weather at one of supported locations                      |        |
-| Days since last snowfall at one of supported locations             |        |
-| Days it has been snowing at one of supported locations             |        |
-| Depth of snow fallen in current fall at one of supported locations |        |
+| Retrieve all supported destinations                                |        |
+| Weather conditions at supported destinations                       |        |
+| Piste information at supported destinations                        |        |
 | User account                                                       |        |
-| Add one of supported locations to user favourites                  |        |
-| Remove one of supported locations to user favourites               |        |
+| Add one of supported destinations to user favourites               |        |
+| Remove one of supported destinations to user favourites            |        |
 | View in browser                                                    |        |
 | View in android app                                                |        |
 | Notification when snow starts to fall                              |        |
+
+/destinations
+	LINK: /country/{countryId}
+
+/country/{countryId}
+	LINK: /region/{regionId}
+
+/region/{resortId}
+	LINK:  /resort/{resortId}
+
+/resort/123
+	LINK: /conditions/{resortId}
+	LINK: /piste/{resortId}
