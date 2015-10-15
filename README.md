@@ -1,6 +1,8 @@
 # Snow Alert
 App to inform and notify on snow fall in resorts.
 
+Now deploys to Heroku <url>
+
 ## Feature Backlog (Priority order)
 | Feature                                                            | Status |
 |--------------------------------------------------------------------|:------:|
