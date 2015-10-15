@@ -1,5 +1,1 @@
 defaultName: snow-alert
-
-http:
-  port: 8080
-  adminPort: 8081
