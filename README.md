@@ -3,6 +3,8 @@ App to inform and notify on snow fall in resorts.
 
 Now deploys to Heroku <url>
 
+Probably going to rewrite in Clojure...
+
 ## Feature Backlog (Priority order)
 | Feature                                                            | Status |
 |--------------------------------------------------------------------|:------:|
